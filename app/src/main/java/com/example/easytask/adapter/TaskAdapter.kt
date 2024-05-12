@@ -17,10 +17,10 @@ class TaskAdapter: RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
     private val differCallback = object: DiffUtil.ItemCallback<Task>(){
         override fun areItemsTheSame(oldItem: Task, newItem: Task): Boolean {
             return oldItem.id== newItem.id &&
-                    oldItem.taskTitle== newItem.taskTitle &&
                     oldItem.taskDesc== newItem.taskDesc &&
-                    oldItem.taskDeadline== newItem.taskDeadline &&
-                    oldItem.taskPriority== newItem.taskPriority
+                    //oldItem.taskPriority== newItem.taskPriority &&
+                    //oldItem.taskDeadline== newItem.taskDeadline &&
+                    oldItem.taskTitle== newItem.taskTitle
         }
 
         override fun areContentsTheSame(oldItem: Task, newItem: Task): Boolean {
@@ -44,14 +44,12 @@ class TaskAdapter: RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
        val currentTask = differ.currentList[position]
 
         holder.itemBinding.noteTitle.text = currentTask.taskTitle
-        holder.itemBinding.NotePriority.text = currentTask.taskPriority
-        holder.itemBinding.NoteDeadline.text = currentTask.taskDeadline
+
         holder.itemBinding.noteDesc.text = currentTask.taskDesc
 
         holder.itemView.setOnClickListener{
             val direction = HomeFragmentDirections.actionHomeFragmentToEditTaskFragment(currentTask)
             it.findNavController().navigate(direction)
         }
-
     }
 }

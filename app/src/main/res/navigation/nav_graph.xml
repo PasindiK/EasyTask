@@ -33,8 +33,9 @@
 
         <argument
             android:name="task"
-            app.argType="com.example.easytask.model.Task"
-            app.nullable="true"/>
+            app:argType="com.example.easytask.model.Task"
+            app:nullable="true"/>
+
 
     </fragment>
 </navigation>

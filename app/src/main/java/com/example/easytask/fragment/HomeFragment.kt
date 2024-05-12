@@ -1,15 +1,16 @@
 package com.example.easytask.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -19,7 +20,6 @@ import com.example.easytask.adapter.TaskAdapter
 import com.example.easytask.databinding.FragmentHomeBinding
 import com.example.easytask.model.Task
 import com.example.easytask.viewmodel.TaskViewModel
-import androidx.appcompat.widget.SearchView
 
 
 class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextListener , MenuProvider  {
@@ -53,7 +53,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
         }
     }
 
-    private fun updateUI(task: List<Task>){
+    private fun updateUI(task: List<Task>?){
         if (task != null){
             if(task.isNotEmpty()){
                 binding.emptyNotesImage.visibility = View.GONE
@@ -90,7 +90,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
         }
     }
 
-    override fun onQueryTextSubmit(query: String?): Boolean {
+    override fun onQueryTextSubmit(p0: String?): Boolean {
         return false
     }
 

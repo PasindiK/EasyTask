@@ -1,8 +1,7 @@
-
 package com.example.easytask.fragment
 
+import android.app.AlertDialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -10,9 +9,9 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
@@ -21,19 +20,16 @@ import com.example.easytask.R
 import com.example.easytask.databinding.FragmentEditTaskBinding
 import com.example.easytask.model.Task
 import com.example.easytask.viewmodel.TaskViewModel
-import kotlin.math.E
-import kotlin.math.floor
 
-
-class EditTaskFragment : Fragment(R.layout.fragment_edit_task),MenuProvider {
+class EditTaskFragment : Fragment(R.layout.fragment_edit_task), MenuProvider {
 
     private var editTaskBinding: FragmentEditTaskBinding? = null
-    private val binding get() = editTaskBinding
+    private val binding get() = editTaskBinding!!
 
     private lateinit var taskViewModel: TaskViewModel
     private lateinit var currentTask: Task
 
-    private val args: EditTaskFragment by navArgs()
+    private val args: EditTaskFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,37 +50,36 @@ class EditTaskFragment : Fragment(R.layout.fragment_edit_task),MenuProvider {
         currentTask = args.task!!
 
         binding.editNoteTitle.setText(currentTask.taskTitle)
-        binding.editNotePriority.setText(currentTask.taskPriority)
-        binding.editNoteDeadline.setText(currentTask.taskDeadline)
         binding.editNoteDesc.setText(currentTask.taskDesc)
 
-        binding.editNoteFab.setOnClickListener{
+        binding.editNoteFab.setOnClickListener {
             val taskTitle = binding.editNoteTitle.text.toString().trim()
-            val taskPriority = binding.editNotePriority.text.toString().trim()
-            val taskDeadline = binding.editNoteDeadline.text.toString().trim()
             val taskDesc = binding.editNoteDesc.text.toString().trim()
 
-            if(taskTitle.isNotEmpty()){
-                val task = Task(currentTask.id,taskTitle,taskPriority,taskDeadline,taskDesc)
+            if (taskTitle.isNotEmpty()) {
+                // Create a new Task object with the updated title and description
+                val task = Task(currentTask.id, taskTitle, taskDesc)
+                // Update the task in the ViewModel
                 taskViewModel.updateTask(task)
+                // Navigate back to the home fragment
                 view.findNavController().popBackStack(R.id.homeFragment, false)
-            }else{
+            } else {
                 Toast.makeText(context, "Please Enter Task Title", Toast.LENGTH_SHORT).show()
             }
         }
 
     }
 
-    private fun deleteTask(){
+    private fun deleteTask() {
         AlertDialog.Builder(activity).apply {
             setTitle("Delete Task")
             setMessage("Do you want to delete this task?")
-            setPositiveButton("Delete"){ _,_ ->
+            setPositiveButton("Delete") { _, _ ->
                 taskViewModel.deleteTask(currentTask)
-                Toast.makeText(context,"Task Deleted" , Toast.LENGTH_SHORT)
-                view?.findNavController()?.popBackStack(R.id.homeFragment,false)
+                Toast.makeText(context, "Task Deleted", Toast.LENGTH_SHORT)
+                view?.findNavController()?.popBackStack(R.id.homeFragment, false)
             }
-            setNeutralButton("Cancel" , null)
+            setNegativeButton("Cancel", null)
         }.create().show()
     }
 
@@ -94,11 +89,12 @@ class EditTaskFragment : Fragment(R.layout.fragment_edit_task),MenuProvider {
     }
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-        return when(menuItem.itemId){
+        return when (menuItem.itemId) {
             R.id.deleteMenu -> {
                 deleteTask()
                 true
-            }else -> false
+            }
+            else -> false
         }
     }
 

@@ -4,7 +4,7 @@ plugins {
     id ("kotlin-kapt")
     id ("kotlin-parcelize")
     id("com.google.devtools.ksp")
-    id ("androidx.navigation.safeargs")
+    id ("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -50,6 +50,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.play.services.tasks)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

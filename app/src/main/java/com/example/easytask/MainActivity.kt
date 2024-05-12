@@ -1,10 +1,7 @@
 package com.example.easytask
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.easytask.database.TaskDatabase
 import com.example.easytask.repository.TaskRepository
@@ -21,6 +18,7 @@ class MainActivity : AppCompatActivity() {
 
         setupViewModel()
         }
+
     private fun setupViewModel(){
         val taskRepository = TaskRepository(TaskDatabase(this))
         val viewModelProviderFactory = TaskViewModelFactory(application, taskRepository)

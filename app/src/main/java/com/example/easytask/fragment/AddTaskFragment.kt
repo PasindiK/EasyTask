@@ -1,8 +1,6 @@
 package com.example.easytask.fragment
 
 import android.os.Bundle
-import android.provider.ContactsContract.CommonDataKinds.Note
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -12,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.findNavController
 import com.example.easytask.MainActivity
@@ -47,16 +46,15 @@ class AddTaskFragment : Fragment(R.layout.fragment_add_task), MenuProvider {
 
         taskViewModel = (activity as MainActivity).taskViewModel
         addTaskView = view
+
     }
 
     private fun saveTask(view: View){
         val taskTitle = binding.addNoteTitle.text.toString().trim()
-        val taskPriority = binding.addNotePriority.text.toString().trim()
-        val taskDeadline = binding.addNoteDeadline.text.toString().trim()
         val taskDesc = binding.addNoteDesc.text.toString().trim()
 
         if (taskTitle.isNotEmpty()) {
-            val task = Task(0, taskTitle, taskPriority, taskDeadline, taskDesc)
+            val task = Task(0, taskTitle,  taskDesc)
             taskViewModel.addTask(task)
 
             Toast.makeText(addTaskView.context, "Task Saved", Toast.LENGTH_SHORT).show()

@@ -35,46 +35,50 @@
             android:maxLines="1"
             android:padding="12dp"
             android:textSize="20sp" />
+        <!--
 
-        <EditText
-            android:id="@+id/addNotePriority"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_below="@id/addNoteTitle"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/border"
-            android:fontFamily="@font/poppins_medium"
-            android:hint="Enter the Priority"
-            android:maxLines="1"
-            android:padding="12dp"
-            android:textSize="20sp" />
+       <EditText
+           android:id="@+id/addNotePriority"
+           android:layout_width="match_parent"
+           android:layout_height="60dp"
+           android:layout_below="@id/addNoteTitle"
+           android:layout_marginTop="16dp"
+           android:background="@drawable/border"
+           android:fontFamily="@font/poppins_medium"
+           android:hint="Enter the Priority"
+           android:maxLines="1"
+           android:padding="12dp"
+           android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/addNoteDeadline"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_below="@id/addNotePriority"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/border"
-            android:fontFamily="@font/poppins_medium"
-            android:hint="Enter the Deadline"
-            android:maxLines="1"
-            android:padding="12dp"
-            android:textSize="20sp" />
+               <EditText
+                   android:id="@+id/addNoteDeadline"
+                   android:layout_width="match_parent"
+                   android:layout_height="60dp"
+                   android:layout_below="@id/addNotePriority"
+                   android:layout_marginTop="16dp"
+                   android:background="@drawable/border"
+                   android:fontFamily="@font/poppins_medium"
+                   android:hint="Enter the Deadline"
+                   android:maxLines="1"
+                   android:padding="12dp"
+                   android:textSize="20sp" />
 
-
+-->
         <EditText
             android:id="@+id/addNoteDesc"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/addNoteDeadline"
+            android:layout_below="@id/addNoteTitle"
             android:layout_marginTop="12dp"
             android:background="@drawable/border"
             android:fontFamily="@font/poppins"
             android:gravity="top"
             android:hint="Enter the description"
             android:padding="12dp"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            />
+
+
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/editNoteFab"
